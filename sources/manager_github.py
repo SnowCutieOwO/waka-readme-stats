@@ -45,6 +45,12 @@ class GitHubManager:
         - Clone of the named repo.
         """
         github = Github(EM.GH_TOKEN)
+        if EM.GH_TOKEN.startswith("ghp"):
+            print("GitHub Token is readable")
+            DBM.i(f"Token not readable")
+        else:
+            print("GitHub token is not readable")
+            DBM.e(f"token not readable")
         clone_path = "repo"
         GitHubManager.USER = github.get_user()
         rmtree(clone_path, ignore_errors=True)
